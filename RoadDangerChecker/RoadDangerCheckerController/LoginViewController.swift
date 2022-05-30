@@ -36,7 +36,6 @@ enum Design {
 class LoginViewController: UIViewController {
     
     //MARK: - SubViews
-    
     let idTextField : TextFieldView = {
         let textFieldView = TextFieldView()
         textFieldView.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +47,7 @@ class LoginViewController: UIViewController {
         
         let attributesDictionary = [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
         textFieldView.textField.attributedPlaceholder = NSAttributedString(string: "ID", attributes: attributesDictionary)
-        textFieldView.textField.textColor = .black
+        textFieldView.textField.textColor = .white
         return textFieldView
     }()
     
@@ -63,7 +62,7 @@ class LoginViewController: UIViewController {
         
         let attributesDictionary = [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
         textFieldView.textField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: attributesDictionary)
-        textFieldView.textField.textColor = .black
+        textFieldView.textField.textColor = .white
         return textFieldView
     }()
     
@@ -117,7 +116,6 @@ class LoginViewController: UIViewController {
         signInButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
         signInButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
-    
     
     func showAlertVC(title: String) {
         let alertController = UIAlertController(title: title, message: "Need to implement code based on user requirements", preferredStyle: UIAlertController.Style.alert)

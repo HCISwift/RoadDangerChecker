@@ -62,6 +62,7 @@
 		3531A87F2840E3C7002E40BE /* RoadDangerChecker */ = {
 			isa = PBXGroup;
 			children = (
+				CD9AE3D22844C5FA004E9E84 /* Models */,
 				3543D7B328449A05007E4FA0 /* RoadDangerCheckerController */,
 				3543D7B2284499D7007E4FA0 /* App */,
 				3543D7AD28449976007E4FA0 /* Icons */,
@@ -106,6 +107,13 @@
 				3543D7B528449A1D007E4FA0 /* SecondModal.swift */,
 			);
 			path = Modals;
+			sourceTree = "<group>";
+		};
+		CD9AE3D22844C5FA004E9E84 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
