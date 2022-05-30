@@ -7,6 +7,9 @@
 
 import UIKit
 
+// MARK: - Model
+let userModel = UserModel()
+
 // MARK: - Constants
 
 enum Design {
@@ -84,7 +87,7 @@ class LoginViewController: UIViewController {
         return button
     }()
     
-    let signUpButton : UIButton = {
+    let signUpButton : UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -117,15 +120,8 @@ class LoginViewController: UIViewController {
         signInButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     
-    func showAlertVC(title: String) {
-        let alertController = UIAlertController(title: title, message: "Need to implement code based on user requirements", preferredStyle: UIAlertController.Style.alert)
-        let cancelAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-        alertController.addAction(cancelAction)
-        self.present(alertController, animated: true, completion:{})
-    }
-    
     @objc private func signInButtonTapped(button: UIButton) {
-        showAlertVC(title: "Sign In tapped")
+        userModel.loginCheck(id: <#T##String#>, pwd: <#T##String#>)
     }
 }
 
