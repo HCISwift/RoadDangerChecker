@@ -31,4 +31,14 @@ final class UserModel {
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", passwordRegEx)
         return passwordTest.evaluate(with: pwd)
     }
+    
+    // 로그인 method
+    func loginCheck(id: String, pwd: String) -> Bool {
+        for user in userModel.users {
+            if user.email == id && user.password == pwd {
+                return true // 로그인 성공
+            }
+        }
+        return false
+    }
 } // end of UserModel
