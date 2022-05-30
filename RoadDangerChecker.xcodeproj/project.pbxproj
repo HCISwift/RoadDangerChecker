@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3531A8812840E3C7002E40BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531A8802840E3C7002E40BE /* AppDelegate.swift */; };
 		3531A8832840E3C7002E40BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531A8822840E3C7002E40BE /* SceneDelegate.swift */; };
-		3531A8852840E3C7002E40BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531A8842840E3C7002E40BE /* ViewController.swift */; };
 		3531A88A2840E3C8002E40BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3531A8892840E3C8002E40BE /* Assets.xcassets */; };
 		3531A88D2840E3C8002E40BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3531A88B2840E3C8002E40BE /* LaunchScreen.storyboard */; };
 		CD9A780D2840E4D400AD3DC2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9A780C2840E4D400AD3DC2 /* LoginViewController.swift */; };
@@ -19,7 +18,6 @@
 		3531A87D2840E3C7002E40BE /* RoadDangerChecker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadDangerChecker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3531A8802840E3C7002E40BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3531A8822840E3C7002E40BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3531A8842840E3C7002E40BE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3531A8892840E3C8002E40BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3531A88C2840E3C8002E40BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3531A88E2840E3C8002E40BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,11 +54,8 @@
 		3531A87F2840E3C7002E40BE /* RoadDangerChecker */ = {
 			isa = PBXGroup;
 			children = (
-				CDDC21E128422F620061AE87 /* ViewController */,
-				CDDC21DC284220D30061AE87 /* Model */,
-				3531A8802840E3C7002E40BE /* AppDelegate.swift */,
-				3531A8822840E3C7002E40BE /* SceneDelegate.swift */,
-				3531A8842840E3C7002E40BE /* ViewController.swift */,
+				CDCB48AA28449E59003B532E /* App */,
+				CDDC21E128422F620061AE87 /* RoadDangerCheckController */,
 				3531A8892840E3C8002E40BE /* Assets.xcassets */,
 				3531A88B2840E3C8002E40BE /* LaunchScreen.storyboard */,
 				3531A88E2840E3C8002E40BE /* Info.plist */,
@@ -68,19 +63,21 @@
 			path = RoadDangerChecker;
 			sourceTree = "<group>";
 		};
-		CDDC21DC284220D30061AE87 /* Model */ = {
+		CDCB48AA28449E59003B532E /* App */ = {
 			isa = PBXGroup;
 			children = (
+				3531A8802840E3C7002E40BE /* AppDelegate.swift */,
+				3531A8822840E3C7002E40BE /* SceneDelegate.swift */,
 			);
-			path = Model;
+			path = App;
 			sourceTree = "<group>";
 		};
-		CDDC21E128422F620061AE87 /* ViewController */ = {
+		CDDC21E128422F620061AE87 /* RoadDangerCheckController */ = {
 			isa = PBXGroup;
 			children = (
 				CD9A780C2840E4D400AD3DC2 /* LoginViewController.swift */,
 			);
-			path = ViewController;
+			path = RoadDangerCheckController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,7 +151,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD9A780D2840E4D400AD3DC2 /* LoginViewController.swift in Sources */,
-				3531A8852840E3C7002E40BE /* ViewController.swift in Sources */,
 				3531A8812840E3C7002E40BE /* AppDelegate.swift in Sources */,
 				3531A8832840E3C7002E40BE /* SceneDelegate.swift in Sources */,
 			);
