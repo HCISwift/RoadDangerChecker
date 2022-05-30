@@ -16,6 +16,8 @@
 		3543D7B728449A1D007E4FA0 /* SecondModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543D7B528449A1D007E4FA0 /* SecondModal.swift */; };
 		3543D7B828449A1D007E4FA0 /* FIrstModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543D7B628449A1D007E4FA0 /* FIrstModal.swift */; };
 		CD9A780D2840E4D400AD3DC2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9A780C2840E4D400AD3DC2 /* LoginViewController.swift */; };
+		CD9AE3D42844C665004E9E84 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9AE3D32844C665004E9E84 /* LoginModel.swift */; };
+		CD9AE3D62844C6DF004E9E84 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9AE3D52844C6DF004E9E84 /* UserModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		3543D7B528449A1D007E4FA0 /* SecondModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondModal.swift; sourceTree = "<group>"; };
 		3543D7B628449A1D007E4FA0 /* FIrstModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIrstModal.swift; sourceTree = "<group>"; };
 		CD9A780C2840E4D400AD3DC2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		CD9AE3D32844C665004E9E84 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		CD9AE3D52844C6DF004E9E84 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,8 @@
 		CD9AE3D22844C5FA004E9E84 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CD9AE3D32844C665004E9E84 /* LoginModel.swift */,
+				CD9AE3D52844C6DF004E9E84 /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -191,8 +197,10 @@
 				CD9A780D2840E4D400AD3DC2 /* LoginViewController.swift in Sources */,
 				3543D7B1284499B6007E4FA0 /* MapContentViewContoller.swift in Sources */,
 				3543D7B828449A1D007E4FA0 /* FIrstModal.swift in Sources */,
+				CD9AE3D62844C6DF004E9E84 /* UserModel.swift in Sources */,
 				3531A8812840E3C7002E40BE /* AppDelegate.swift in Sources */,
 				3531A8832840E3C7002E40BE /* SceneDelegate.swift in Sources */,
+				CD9AE3D42844C665004E9E84 /* LoginModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
