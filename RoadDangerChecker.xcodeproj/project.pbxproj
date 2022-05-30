@@ -9,9 +9,12 @@
 /* Begin PBXBuildFile section */
 		3531A8812840E3C7002E40BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531A8802840E3C7002E40BE /* AppDelegate.swift */; };
 		3531A8832840E3C7002E40BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531A8822840E3C7002E40BE /* SceneDelegate.swift */; };
-		3531A8852840E3C7002E40BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531A8842840E3C7002E40BE /* ViewController.swift */; };
 		3531A88A2840E3C8002E40BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3531A8892840E3C8002E40BE /* Assets.xcassets */; };
 		3531A88D2840E3C8002E40BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3531A88B2840E3C8002E40BE /* LaunchScreen.storyboard */; };
+		3543D7AF2844998C007E4FA0 /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543D7AE2844998C007E4FA0 /* UIImage+extension.swift */; };
+		3543D7B1284499B6007E4FA0 /* MapContentViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543D7B0284499B6007E4FA0 /* MapContentViewContoller.swift */; };
+		3543D7B728449A1D007E4FA0 /* SecondModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543D7B528449A1D007E4FA0 /* SecondModal.swift */; };
+		3543D7B828449A1D007E4FA0 /* FIrstModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543D7B628449A1D007E4FA0 /* FIrstModal.swift */; };
 		CD9A780D2840E4D400AD3DC2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9A780C2840E4D400AD3DC2 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -19,10 +22,13 @@
 		3531A87D2840E3C7002E40BE /* RoadDangerChecker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadDangerChecker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3531A8802840E3C7002E40BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3531A8822840E3C7002E40BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3531A8842840E3C7002E40BE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3531A8892840E3C8002E40BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3531A88C2840E3C8002E40BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3531A88E2840E3C8002E40BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3543D7AE2844998C007E4FA0 /* UIImage+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
+		3543D7B0284499B6007E4FA0 /* MapContentViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapContentViewContoller.swift; sourceTree = "<group>"; };
+		3543D7B528449A1D007E4FA0 /* SecondModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondModal.swift; sourceTree = "<group>"; };
+		3543D7B628449A1D007E4FA0 /* FIrstModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIrstModal.swift; sourceTree = "<group>"; };
 		CD9A780C2840E4D400AD3DC2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,15 +62,50 @@
 		3531A87F2840E3C7002E40BE /* RoadDangerChecker */ = {
 			isa = PBXGroup;
 			children = (
-				3531A8802840E3C7002E40BE /* AppDelegate.swift */,
-				3531A8822840E3C7002E40BE /* SceneDelegate.swift */,
-				3531A8842840E3C7002E40BE /* ViewController.swift */,
-				CD9A780C2840E4D400AD3DC2 /* LoginViewController.swift */,
+				3543D7B328449A05007E4FA0 /* RoadDangerCheckerController */,
+				3543D7B2284499D7007E4FA0 /* App */,
+				3543D7AD28449976007E4FA0 /* Icons */,
 				3531A8892840E3C8002E40BE /* Assets.xcassets */,
 				3531A88B2840E3C8002E40BE /* LaunchScreen.storyboard */,
 				3531A88E2840E3C8002E40BE /* Info.plist */,
 			);
 			path = RoadDangerChecker;
+			sourceTree = "<group>";
+		};
+		3543D7AD28449976007E4FA0 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				3543D7AE2844998C007E4FA0 /* UIImage+extension.swift */,
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
+		3543D7B2284499D7007E4FA0 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				3531A8802840E3C7002E40BE /* AppDelegate.swift */,
+				3531A8822840E3C7002E40BE /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		3543D7B328449A05007E4FA0 /* RoadDangerCheckerController */ = {
+			isa = PBXGroup;
+			children = (
+				3543D7B428449A12007E4FA0 /* Modals */,
+				3543D7B0284499B6007E4FA0 /* MapContentViewContoller.swift */,
+				CD9A780C2840E4D400AD3DC2 /* LoginViewController.swift */,
+			);
+			path = RoadDangerCheckerController;
+			sourceTree = "<group>";
+		};
+		3543D7B428449A12007E4FA0 /* Modals */ = {
+			isa = PBXGroup;
+			children = (
+				3543D7B628449A1D007E4FA0 /* FIrstModal.swift */,
+				3543D7B528449A1D007E4FA0 /* SecondModal.swift */,
+			);
+			path = Modals;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +178,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3543D7AF2844998C007E4FA0 /* UIImage+extension.swift in Sources */,
+				3543D7B728449A1D007E4FA0 /* SecondModal.swift in Sources */,
 				CD9A780D2840E4D400AD3DC2 /* LoginViewController.swift in Sources */,
-				3531A8852840E3C7002E40BE /* ViewController.swift in Sources */,
+				3543D7B1284499B6007E4FA0 /* MapContentViewContoller.swift in Sources */,
+				3543D7B828449A1D007E4FA0 /* FIrstModal.swift in Sources */,
 				3531A8812840E3C7002E40BE /* AppDelegate.swift in Sources */,
 				3531A8832840E3C7002E40BE /* SceneDelegate.swift in Sources */,
 			);
