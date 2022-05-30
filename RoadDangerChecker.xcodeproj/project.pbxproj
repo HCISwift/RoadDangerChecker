@@ -56,15 +56,31 @@
 		3531A87F2840E3C7002E40BE /* RoadDangerChecker */ = {
 			isa = PBXGroup;
 			children = (
+				CDDC21E128422F620061AE87 /* ViewController */,
+				CDDC21DC284220D30061AE87 /* Model */,
 				3531A8802840E3C7002E40BE /* AppDelegate.swift */,
 				3531A8822840E3C7002E40BE /* SceneDelegate.swift */,
 				3531A8842840E3C7002E40BE /* ViewController.swift */,
-				CD9A780C2840E4D400AD3DC2 /* LoginViewController.swift */,
 				3531A8892840E3C8002E40BE /* Assets.xcassets */,
 				3531A88B2840E3C8002E40BE /* LaunchScreen.storyboard */,
 				3531A88E2840E3C8002E40BE /* Info.plist */,
 			);
 			path = RoadDangerChecker;
+			sourceTree = "<group>";
+		};
+		CDDC21DC284220D30061AE87 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CDDC21E128422F620061AE87 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CD9A780C2840E4D400AD3DC2 /* LoginViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
