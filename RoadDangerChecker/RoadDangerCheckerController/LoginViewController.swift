@@ -8,7 +8,9 @@
 import UIKit
 
 // MARK: - Model
+
 let userModel = UserModel()
+let loginModel = LoginModel()
 
 // MARK: - Constants
 
@@ -30,72 +32,62 @@ enum Design {
         static let imageViewLeading: CGFloat = 0.0
         static let imageViewHeight: CGFloat = 20.0
         static let imageViewWidth: CGFloat = 0.0
-        
     }
 }
 
 //MARK: - LoginViewController
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, LoginModelDelegate {
+    func login(_ musicPlayer: LoginModel, didLoginAvailable canLogin: Bool) {
+        if canLogin {
+            let mapContentViewController = MapContentViewContoller()
+            mapContentViewController.modalPresentationStyle = .fullScreen
+            present(mapContentViewController, animated: true, completion: nil)
+        } else {
+            signInButton.backgroundColor = .red
+        }
+    }
+    
     
     //MARK: - SubViews
-    let idTextField : TextFieldView = {
-        let textFieldView = TextFieldView()
-        textFieldView.translatesAutoresizingMaskIntoConstraints = false
-        textFieldView.backgroundColor = UIColor.clear
-        
-        textFieldView.imageView.contentMode = .scaleAspectFill
-        textFieldView.imageView.image = UIImage(systemName: "person.fill")
-        textFieldView.imageView.tintColor = .white
-        
-        let attributesDictionary = [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
-        textFieldView.textField.attributedPlaceholder = NSAttributedString(string: "ID", attributes: attributesDictionary)
-        textFieldView.textField.textColor = .white
-        return textFieldView
+    private lazy var  idTextField : UITextField = {
+        let idTextField = UITextField()
+        idTextField.translatesAutoresizingMaskIntoConstraints = false
+        idTextField.placeholder = "Id"
+        idTextField.borderStyle = UITextField.BorderStyle.line
+        idTextField.backgroundColor = UIColor.white
+        idTextField.textColor = .black
+        return idTextField
     }()
     
-    let passwordTextField : TextFieldView = {
-        let textFieldView = TextFieldView()
-        textFieldView.translatesAutoresizingMaskIntoConstraints = false
-        textFieldView.backgroundColor = UIColor.clear
-        
-        textFieldView.imageView.contentMode = .scaleAspectFill
-        textFieldView.imageView.image = UIImage(systemName: "lock.fill")
-        textFieldView.imageView.tintColor = .white
-        
-        let attributesDictionary = [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
-        textFieldView.textField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: attributesDictionary)
-        textFieldView.textField.textColor = .white
-        return textFieldView
+    private lazy var  passwordTextField : UITextField = {
+        let passwordTextField = UITextField()
+        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+        passwordTextField.placeholder = "Password"
+        passwordTextField.borderStyle = UITextField.BorderStyle.line
+        passwordTextField.backgroundColor = UIColor.white
+        passwordTextField.textColor = .black
+        return passwordTextField
     }()
     
     lazy var signInButton : UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.alpha = 0.4
         button.backgroundColor = UIColor.lightGray
         button.setTitle("SIGN IN", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
-        button.isEnabled = false
         button.addTarget(self, action: #selector(signInButtonTapped(button:)), for: .touchUpInside)
         return button
     }()
-    
-    let forgotPassword : UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    let signUpButton : UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.white
+        
         setupViews()
+        loginModel.delegate = self
     }
     
     // MARK: - Setups
@@ -108,76 +100,20 @@ class LoginViewController: UIViewController {
         idTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
         view.addSubview(passwordTextField)
-        passwordTextField.topAnchor.constraint(equalTo: idTextField.bottomAnchor, constant: 10).isActive = true
+        passwordTextField.topAnchor.constraint(equalTo: idTextField.bottomAnchor, constant: 10.0).isActive = true
         passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
         passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
         passwordTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
         view.addSubview(signInButton)
-        signInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 10).isActive = true
+        signInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 10.0).isActive = true
         signInButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
         signInButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
         signInButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
     }
     
     @objc private func signInButtonTapped(button: UIButton) {
-        userModel.loginCheck(id: <#T##String#>, pwd: <#T##String#>)
+        loginModel.loginCheck(id: idTextField.text!, pwd: passwordTextField.text!)
     }
 }
-
-class TextFieldView: UIView {
-    
-    let imageView : UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
-    let textField : UITextField = {
-        let textFieldView = UITextField()
-        textFieldView.translatesAutoresizingMaskIntoConstraints = false
-        return textFieldView
-    }()
-    
-    let textlineView : UIView = {
-        let textLineView = UIView()
-        textLineView.translatesAutoresizingMaskIntoConstraints = false
-        textLineView.backgroundColor = UIColor.white
-        return textLineView
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        addingSubviews()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func addingSubviews() {
-        self.addSubview(textlineView)
-        NSLayoutConstraint.activate([
-            textlineView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Design.TextFieldView.textLineLeading),
-            textlineView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Design.TextFieldView.textLineTrailing),
-            textlineView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: Design.TextFieldView.textLineBottom),
-            textlineView.heightAnchor.constraint(equalToConstant: Design.TextFieldView.textLineHeight),
-        ])
-        
-        self.addSubview(imageView)
-        NSLayoutConstraint.activate([
-            imageView.bottomAnchor.constraint(equalTo: textlineView.topAnchor, constant:Design.TextFieldView.imageViewBottom),
-            imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Design.TextFieldView.imageViewLeading),
-            imageView.heightAnchor.constraint(equalToConstant: Design.TextFieldView.imageViewHeight),
-            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, constant: Design.TextFieldView.imageViewWidth),
-        ])
-        
-        self.addSubview(textField)
-        NSLayoutConstraint.activate([
-            textField.lastBaselineAnchor.constraint(equalTo: imageView.lastBaselineAnchor, constant: -1.0),
-            textField.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8.0),
-            textField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0.0),
-        ])
-    }
-}
-
