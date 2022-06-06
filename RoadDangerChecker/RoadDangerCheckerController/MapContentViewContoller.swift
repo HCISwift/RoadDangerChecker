@@ -1,9 +1,12 @@
 import UIKit
+import MapKit
 
 class MapContentViewContoller: UIViewController {
-    // MARK: property
+    // MARK: - property
+    let map = MKMapView()
+    let chungNamCoordinate = CLLocationCoordinate2D(latitude: 36.36220885252049, longitude: 127.34467506408693)
     
-    // MARK: SubViews
+    // MARK: - SubViews
     private lazy var roadButton:UIButton = {
         let button = UIButton()
         button.setImage(.Icon.road, for: .normal)
@@ -55,10 +58,13 @@ class MapContentViewContoller: UIViewController {
         return stackView
     } ()
     
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .darkGray
         SetupTabBar()
+        SetupMap()
+        
+        map.delegate = self
         
         let safeAreaGuide = self.view.safeAreaLayoutGuide
         
@@ -68,8 +74,10 @@ class MapContentViewContoller: UIViewController {
             buttonStackView.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor),
             buttonStackView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -5),
         ])
+        
     }
-    // MARK: Setup
+    
+    // MARK: - Setup
     private func SetupTabBar() {
         view.addSubview(buttonStackView)
         NSLayoutConstraint.activate([
@@ -85,9 +93,23 @@ class MapContentViewContoller: UIViewController {
         buttonStackView.addArrangedSubview(dangerButton)
         buttonStackView.addArrangedSubview(settingButton)
     }
+    private func SetupMap() {
+        view.addSubview(map)
+        map.translatesAutoresizingMaskIntoConstraints = false // 빼 먹지 말자!
+        NSLayoutConstraint.activate([
+            map.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -80),
+            map.topAnchor.constraint(equalTo: view.topAnchor),
+            map.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            map.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+        
+        map.setRegion(MKCoordinateRegion(center: chungNamCoordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedMapView(_:)))
+        map.addGestureRecognizer(tap)
+    }
     
     
-    // MARK: Action
+    // MARK: - Action
     @objc func MoveToFirstModal(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         
@@ -106,5 +128,17 @@ class MapContentViewContoller: UIViewController {
             print("bye")
             }
         }
+    
+    @objc func didTappedMapView(_ sender: UITapGestureRecognizer) {
+        print("Hello?")
+        let addMarkerModal = AddMarkerModal()
+        addMarkerModal.modalPresentationStyle = .overFullScreen
+        present(addMarkerModal, animated: true, completion: nil)
+    }
    
+}
+
+// MARK: - Delegate
+extension MapContentViewContoller: MKMapViewDelegate, CLLocationManagerDelegate {
+    
 }
