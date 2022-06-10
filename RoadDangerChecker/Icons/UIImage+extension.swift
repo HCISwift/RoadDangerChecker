@@ -16,5 +16,6 @@ extension UIImage {
         static let road = UIImage(named: "Road")
         static let roadSelected = UIImage(named: "RoadSelected")
         static let cancel = UIImage(named: "Cancel")
+        static let roadMarker = UIImage(named: "roadMarkerImage")
     }
 }

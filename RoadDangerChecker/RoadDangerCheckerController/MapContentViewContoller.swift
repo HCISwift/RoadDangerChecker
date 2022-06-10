@@ -5,6 +5,8 @@ class MapContentViewContoller: UIViewController {
     // MARK: - property
     let map = MKMapView()
     let chungNamCoordinate = CLLocationCoordinate2D(latitude: 36.36220885252049, longitude: 127.34467506408693)
+    var tapForMarker = UITapGestureRecognizer()
+    var isMakeAnnotation = false
     
     // MARK: - SubViews
     private lazy var roadButton:UIButton = {
@@ -80,14 +82,6 @@ class MapContentViewContoller: UIViewController {
     // MARK: - Setup
     private func SetupTabBar() {
         view.addSubview(buttonStackView)
-        NSLayoutConstraint.activate([
-            roadButton.widthAnchor.constraint(equalToConstant: 50.0),
-            roadButton.heightAnchor.constraint(equalToConstant: 50.0),
-            dangerButton.widthAnchor.constraint(equalToConstant: 50.0),
-            dangerButton.heightAnchor.constraint(equalToConstant: 50.0),
-            settingButton.widthAnchor.constraint(equalToConstant: 50.0),
-            settingButton.heightAnchor.constraint(equalToConstant: 50.0),
-        ])
         
         buttonStackView.addArrangedSubview(roadButton)
         buttonStackView.addArrangedSubview(dangerButton)
@@ -104,11 +98,10 @@ class MapContentViewContoller: UIViewController {
         ])
         
         map.setRegion(MKCoordinateRegion(center: chungNamCoordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedMapView(_:)))
-        map.addGestureRecognizer(tap)
+        //let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedMapView(_:)))
+        self.tapForMarker = UITapGestureRecognizer(target: self, action: #selector(self.didTappedMapView(_:)))
+        //map.addGestureRecognizer(tap)
     }
-    
-    
     // MARK: - Action
     @objc func MoveToFirstModal(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
@@ -124,18 +117,32 @@ class MapContentViewContoller: UIViewController {
         sender.isSelected = !sender.isSelected
         if sender.isSelected {
             print("hello")
+            map.addGestureRecognizer(self.tapForMarker)
         } else {
             print("bye")
+            map.removeGestureRecognizer(self.tapForMarker)
             }
         }
     
     @objc func didTappedMapView(_ sender: UITapGestureRecognizer) {
         print("Hello?")
         let addMarkerModal = AddMarkerModal()
+        let location: CGPoint = sender.location(in: self.map)
+        let mapPoint = self.map.convert(location, toCoordinateFrom: self.map)
+        
         addMarkerModal.modalPresentationStyle = .overFullScreen
         present(addMarkerModal, animated: true, completion: nil)
+        // 마커 생성, 그 마커는 클릭이 가능해야 함!
+        let marker = addCustiomPin(coord: mapPoint)
+        self.map.addAnnotation(marker)
     }
-   
+    // MARK: - Custom Func
+    private func addCustiomPin(coord: CLLocationCoordinate2D) -> MKPointAnnotation {
+        let pin = MKPointAnnotation()
+        pin.coordinate = coord
+        pin.title = "위험 마커"
+        return pin
+    }
 }
 
 // MARK: - Delegate
