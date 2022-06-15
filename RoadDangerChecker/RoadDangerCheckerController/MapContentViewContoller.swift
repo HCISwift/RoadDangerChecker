@@ -117,24 +117,25 @@ class MapContentViewContoller: UIViewController {
         sender.isSelected = !sender.isSelected
         if sender.isSelected {
             print("hello")
+            map.delegate = nil
             map.addGestureRecognizer(self.tapForMarker)
         } else {
             print("bye")
+            map.delegate = self
             map.removeGestureRecognizer(self.tapForMarker)
             }
         }
     
     @objc func didTappedMapView(_ sender: UITapGestureRecognizer) {
         print("Hello?")
-        let addMarkerModal = AddMarkerModal()
         let location: CGPoint = sender.location(in: self.map)
         let mapPoint = self.map.convert(location, toCoordinateFrom: self.map)
+        let addMarkerModal = AddMarkerModal()
+        addMarkerModal.location = mapPoint
         
         addMarkerModal.modalPresentationStyle = .overFullScreen
+        addMarkerModal.delegate = self
         present(addMarkerModal, animated: true, completion: nil)
-        // 마커 생성, 그 마커는 클릭이 가능해야 함!
-        let marker = addCustiomPin(coord: mapPoint)
-        self.map.addAnnotation(marker)
     }
     // MARK: - Custom Func
     private func addCustiomPin(coord: CLLocationCoordinate2D) -> MKPointAnnotation {
@@ -146,6 +147,18 @@ class MapContentViewContoller: UIViewController {
 }
 
 // MARK: - Delegate
-extension MapContentViewContoller: MKMapViewDelegate, CLLocationManagerDelegate {
+extension MapContentViewContoller: MKMapViewDelegate, AddMarkerModalDelegate {
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        print("clicked Marker")
+        let existingMarkerModal = ExistingMarkerModal()
+        existingMarkerModal.modalPresentationStyle = .overFullScreen
+        present(existingMarkerModal, animated: true, completion: nil)
+    }
     
+    func canMakeAnnotation(location:CLLocationCoordinate2D?) {
+        // 마커 생성, 그 마커는 클릭이 가능해야 함!
+        let marker = addCustiomPin(coord: location!)
+        self.map.addAnnotation(marker)
+        
+    }
 }
