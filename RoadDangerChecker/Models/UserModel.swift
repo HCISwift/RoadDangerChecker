@@ -14,7 +14,7 @@ final class UserModel {
     }
     
     var users: [User] = [
-        User(email: "a", password: "1"),
+        User(email: "A", password: "A"),
     ]
     
     // 아이디 형식 검사
