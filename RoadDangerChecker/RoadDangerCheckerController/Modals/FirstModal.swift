@@ -15,6 +15,36 @@ class FirstModal: UIViewController {
         return topBarView
     }()
     
+    lazy var MyCourseButton: UIButton = {
+        let courseButton = UIButton()
+        courseButton.setTitle("My Course", for: .normal)
+        courseButton.setTitleColor(UIColor.black, for: .normal)
+        courseButton.backgroundColor = UIColor.systemGray2
+        courseButton.layer.cornerRadius = 16
+        courseButton.clipsToBounds = true
+        
+        return courseButton
+    }()
+    
+    lazy var MySharedButton: UIButton = {
+        let sharedButton = UIButton()
+        sharedButton.setTitle("Shared", for: .normal)
+        sharedButton.setTitleColor(UIColor.black, for: .normal)
+        sharedButton.backgroundColor = UIColor.systemGray2
+        sharedButton.layer.cornerRadius = 16
+        sharedButton.clipsToBounds = true
+        
+        return sharedButton
+    }()
+    
+    lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [MyCourseButton, MySharedButton])
+        stackView.distribution = .fillEqually
+        stackView.axis = .horizontal
+        stackView.spacing = 20.0
+        return stackView
+    }()
+    
     lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -84,8 +114,10 @@ class FirstModal: UIViewController {
         
         containerView.addSubview(topBarView)
         containerView.addSubview(contentScrollView)
+        containerView.addSubview(stackView)
         topBarView.translatesAutoresizingMaskIntoConstraints = false
         contentScrollView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         // Set static constraints
         NSLayoutConstraint.activate([
@@ -103,10 +135,15 @@ class FirstModal: UIViewController {
             topBarView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -150),
             topBarView.heightAnchor.constraint(equalToConstant: CGFloat(10)),
             
-            contentScrollView.topAnchor.constraint(equalTo: topBarView.bottomAnchor, constant: 10),
+            stackView.topAnchor.constraint(equalTo: topBarView.bottomAnchor, constant: 10),
+            stackView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10),
+            stackView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10),
+            
+            contentScrollView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
             contentScrollView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10),
             contentScrollView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10),
             contentScrollView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10),
+            
             
         ])
         
