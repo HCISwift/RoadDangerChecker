@@ -102,15 +102,12 @@ class MapContentViewContoller: UIViewController {
         self.tapForMarker = UITapGestureRecognizer(target: self, action: #selector(self.didTappedMapView(_:)))
         //map.addGestureRecognizer(tap)
     }
+    
     // MARK: - Action
     @objc func MoveToFirstModal(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        
-        if sender.isSelected {
-            print("hello")
-        } else {
-            print("bye")
-        }
+        let vc = FirstModal()
+        vc.modalPresentationStyle = .overCurrentContext
+        self.present(vc, animated: false)
     }
     
     @objc func MoveToSecondModal(_ sender: UIButton) {
