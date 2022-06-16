@@ -23,6 +23,14 @@ class FirstModal: UIViewController {
         return view
     }()
     
+    lazy var contentScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.backgroundColor = .black
+        scrollView.showsVerticalScrollIndicator = false
+        return scrollView
+    }()
+    
     let maxDimmedAlpha: CGFloat = 0.6
     lazy var dimmedView: UIView = {
         let view = UIView()
@@ -75,7 +83,9 @@ class FirstModal: UIViewController {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
         containerView.addSubview(topBarView)
+        containerView.addSubview(contentScrollView)
         topBarView.translatesAutoresizingMaskIntoConstraints = false
+        contentScrollView.translatesAutoresizingMaskIntoConstraints = false
         
         // Set static constraints
         NSLayoutConstraint.activate([
@@ -92,6 +102,11 @@ class FirstModal: UIViewController {
             topBarView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 150),
             topBarView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -150),
             topBarView.heightAnchor.constraint(equalToConstant: CGFloat(10)),
+            
+            contentScrollView.topAnchor.constraint(equalTo: topBarView.bottomAnchor, constant: 10),
+            contentScrollView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10),
+            contentScrollView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10),
+            contentScrollView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10),
             
         ])
         
