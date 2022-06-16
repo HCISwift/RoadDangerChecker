@@ -6,13 +6,18 @@
 //
 
 import UIKit
+import MapKit
+
+protocol AddMarkerModalDelegate: NSObject {
+    func canMakeAnnotation(location: CLLocationCoordinate2D?)
+}
 
 class AddMarkerModal: UIViewController {
     // MARK: - property
     let viewWidth: CGFloat = 300.0
     let viewHeight: CGFloat = 500.0
-    var annotationMakeFlag = false
-    var location: Array<CGFloat> = [CGFloat]()
+    var location: CLLocationCoordinate2D?
+    weak var delegate: AddMarkerModalDelegate?
     
     // MARK: - Subview
     private lazy var containerView: UIView = {
@@ -135,6 +140,7 @@ class AddMarkerModal: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     @objc func saveAnnotation(_ sender: UIButton) {
+        self.delegate?.canMakeAnnotation(location: location)
         self.dismiss(animated: true, completion: nil) // 일단 눈속임.. 올바른 구현은 아님!
     }
     @objc func changeImageView(_ sender: UITapGestureRecognizer) {
@@ -145,6 +151,7 @@ class AddMarkerModal: UIViewController {
     
 }
 
+// MARK: - Delegate
 extension AddMarkerModal: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // 엔터를 누르면 -> TextField 삭제하고, 그 위치 그대로
