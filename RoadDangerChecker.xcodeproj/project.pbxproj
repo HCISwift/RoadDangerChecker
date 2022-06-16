@@ -14,7 +14,7 @@
 		3543D7AF2844998C007E4FA0 /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543D7AE2844998C007E4FA0 /* UIImage+extension.swift */; };
 		3543D7B1284499B6007E4FA0 /* MapContentViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543D7B0284499B6007E4FA0 /* MapContentViewContoller.swift */; };
 		3543D7B728449A1D007E4FA0 /* SecondModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543D7B528449A1D007E4FA0 /* SecondModal.swift */; };
-		3543D7B828449A1D007E4FA0 /* FIrstModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543D7B628449A1D007E4FA0 /* FIrstModal.swift */; };
+		3543D7B828449A1D007E4FA0 /* FirstModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543D7B628449A1D007E4FA0 /* FirstModal.swift */; };
 		35E1FDCA285A3D2C00FEC87B /* ExistingMarkerModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1FDC9285A3D2C00FEC87B /* ExistingMarkerModal.swift */; };
 		35E30BED284DC412003F2260 /* AddMarkerModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E30BEC284DC412003F2260 /* AddMarkerModal.swift */; };
 		CD9A780D2840E4D400AD3DC2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9A780C2840E4D400AD3DC2 /* LoginViewController.swift */; };
@@ -32,7 +32,7 @@
 		3543D7AE2844998C007E4FA0 /* UIImage+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
 		3543D7B0284499B6007E4FA0 /* MapContentViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapContentViewContoller.swift; sourceTree = "<group>"; };
 		3543D7B528449A1D007E4FA0 /* SecondModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondModal.swift; sourceTree = "<group>"; };
-		3543D7B628449A1D007E4FA0 /* FIrstModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIrstModal.swift; sourceTree = "<group>"; };
+		3543D7B628449A1D007E4FA0 /* FirstModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstModal.swift; sourceTree = "<group>"; };
 		35E1FDC9285A3D2C00FEC87B /* ExistingMarkerModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingMarkerModal.swift; sourceTree = "<group>"; };
 		35E30BEC284DC412003F2260 /* AddMarkerModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMarkerModal.swift; sourceTree = "<group>"; };
 		CD9A780C2840E4D400AD3DC2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 		3543D7B428449A12007E4FA0 /* Modals */ = {
 			isa = PBXGroup;
 			children = (
-				3543D7B628449A1D007E4FA0 /* FIrstModal.swift */,
+				3543D7B628449A1D007E4FA0 /* FirstModal.swift */,
 				3543D7B528449A1D007E4FA0 /* SecondModal.swift */,
 				35E30BEC284DC412003F2260 /* AddMarkerModal.swift */,
 				35E1FDC9285A3D2C00FEC87B /* ExistingMarkerModal.swift */,
@@ -203,7 +203,7 @@
 				35E1FDCA285A3D2C00FEC87B /* ExistingMarkerModal.swift in Sources */,
 				CD9A780D2840E4D400AD3DC2 /* LoginViewController.swift in Sources */,
 				3543D7B1284499B6007E4FA0 /* MapContentViewContoller.swift in Sources */,
-				3543D7B828449A1D007E4FA0 /* FIrstModal.swift in Sources */,
+				3543D7B828449A1D007E4FA0 /* FirstModal.swift in Sources */,
 				CD9AE3D62844C6DF004E9E84 /* UserModel.swift in Sources */,
 				3531A8812840E3C7002E40BE /* AppDelegate.swift in Sources */,
 				35E30BED284DC412003F2260 /* AddMarkerModal.swift in Sources */,
