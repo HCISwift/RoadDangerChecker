@@ -7,7 +7,67 @@
 
 import UIKit
 
-class FirstModal: UIViewController {
+struct Data {
+    let memberName = ["효정", "미미", "유아", "승희", "지호", "비니", "아린", "효정", "미미", "유아", "승희", "지호", "비니", "아린", "효정", "미미", "유아", "승희", "지호", "비니", "아린", "효정", "미미", "유아", "승희", "지호", "비니", "아린", "효정", "미미", "유아", "승희", "지호", "비니", "아린", "효정", "미미", "유아", "승희", "지호", "비니", "아린"]
+}
+
+class CustomCollectionView: UICollectionView {
+    
+    // none
+    
+}
+
+class TabOneViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        self.view.backgroundColor = UIColor.blue
+        self.title = "Tab 1"
+    }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+ 
+}
+
+class CollectionViewCell: UICollectionViewCell {
+    
+    var memberNameLabel: UILabel!
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setUpCell()
+        setUpLabel()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: .zero)
+        setUpCell()
+        setUpLabel()
+    }
+    
+    func setUpCell() {
+        memberNameLabel = UILabel()
+        contentView.addSubview(memberNameLabel)
+        memberNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        memberNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
+        memberNameLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
+        memberNameLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
+        memberNameLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
+    }
+    
+    func setUpLabel() {
+        memberNameLabel.font = UIFont.systemFont(ofSize: 12)
+        memberNameLabel.textAlignment = .center
+    }
+    
+}
+
+class FirstModal: UITabBarController {
+    
+    private var customCollectionView: CustomCollectionView!
+    private let data = Data()
     
     lazy var topBarView: UIView = {
         let topBarView = UIView()
@@ -23,8 +83,14 @@ class FirstModal: UIViewController {
         courseButton.layer.cornerRadius = 16
         courseButton.clipsToBounds = true
         
+        courseButton.addTarget(self, action: #selector(didCourseButtonClicked(_:)), for: .touchUpInside)
+        
         return courseButton
     }()
+    
+    @objc private func didCourseButtonClicked(_ sender: UIButton) {
+        
+    }
     
     lazy var MySharedButton: UIButton = {
         let sharedButton = UIButton()
@@ -53,14 +119,6 @@ class FirstModal: UIViewController {
         return view
     }()
     
-    lazy var contentScrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = .black
-        scrollView.showsVerticalScrollIndicator = false
-        return scrollView
-    }()
-    
     let maxDimmedAlpha: CGFloat = 0.6
     lazy var dimmedView: UIView = {
         let view = UIView()
@@ -70,7 +128,7 @@ class FirstModal: UIViewController {
     }()
     
     // Constants
-    let defaultHeight: CGFloat = 300
+    let defaultHeight: CGFloat = 500
     let dismissibleHeight: CGFloat = 200
     let maximumContainerHeight: CGFloat = UIScreen.main.bounds.height - 64
     // keep current new height, initial is default height
@@ -89,16 +147,24 @@ class FirstModal: UIViewController {
         dimmedView.addGestureRecognizer(tapGesture)
         
         setupPanGesture()
-    }
-    
-    @objc func handleCloseAction() {
-        animateDismissView()
+        
+        //registerCollectionView()
+        //collectionViewDelegate()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         animateShowDimmedView()
         animatePresentContainer()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    // UITabBarControllerDelegate method
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        print("Selected \(viewController.title!)")
     }
     
     func setupView() {
@@ -108,16 +174,18 @@ class FirstModal: UIViewController {
     func setupConstraints() {
         // Add subviews
         view.addSubview(dimmedView)
-        view.addSubview(containerView)
         dimmedView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
         containerView.addSubview(topBarView)
-        containerView.addSubview(contentScrollView)
-        containerView.addSubview(stackView)
         topBarView.translatesAutoresizingMaskIntoConstraints = false
-        contentScrollView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
+//        customCollectionView = CustomCollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
+//        containerView.addSubview(customCollectionView)
+//        customCollectionView.translatesAutoresizingMaskIntoConstraints = false
+//        customCollectionView.backgroundColor = .clear
         
         // Set static constraints
         NSLayoutConstraint.activate([
@@ -138,13 +206,11 @@ class FirstModal: UIViewController {
             stackView.topAnchor.constraint(equalTo: topBarView.bottomAnchor, constant: 10),
             stackView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10),
             stackView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10),
-            
-            contentScrollView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
-            contentScrollView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10),
-            contentScrollView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10),
-            contentScrollView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10),
-            
-            
+//
+//            customCollectionView.topAnchor.constraint(equalTo: stackView.topAnchor, constant: 10),
+//            customCollectionView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10),
+//            customCollectionView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10),
+//            customCollectionView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10),
         ])
         
         // Set dynamic constraints
@@ -161,6 +227,15 @@ class FirstModal: UIViewController {
         containerViewBottomConstraint?.isActive = true
     }
     
+    func registerCollectionView() {
+        customCollectionView.register(CollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "cellIdentifier")
+    }
+    
+    func collectionViewDelegate() {
+        customCollectionView.delegate = self
+        customCollectionView.dataSource = self
+    }
+    
     func setupPanGesture() {
         // add pan gesture recognizer to the view controller's view (the whole screen)
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.handlePanGesture(gesture:)))
@@ -168,6 +243,10 @@ class FirstModal: UIViewController {
         panGesture.delaysTouchesBegan = false
         panGesture.delaysTouchesEnded = false
         view.addGestureRecognizer(panGesture)
+    }
+    
+    @objc func handleCloseAction() {
+        animateDismissView()
     }
     
     // MARK: Pan gesture handler
@@ -262,4 +341,23 @@ class FirstModal: UIViewController {
             self.view.layoutIfNeeded()
         }
     }
+}
+
+extension FirstModal: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = view.frame.width / 3 - 1
+        return CGSize(width: width, height: width)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return data.memberName.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = customCollectionView.dequeueReusableCell(withReuseIdentifier: "cellIdentifier", for: indexPath) as! CollectionViewCell
+        cell.memberNameLabel.text = data.memberName[indexPath.row]
+        return cell
+    }
+    
 }
