@@ -102,23 +102,26 @@ class MapContentViewContoller: UIViewController {
         self.tapForMarker = UITapGestureRecognizer(target: self, action: #selector(self.didTappedMapView(_:)))
         //map.addGestureRecognizer(tap)
     }
-    
     // MARK: - Action
     @objc func MoveToFirstModal(_ sender: UIButton) {
-        let vc = FirstModal()
-        vc.modalPresentationStyle = .overCurrentContext
-        self.present(vc, animated: false)
+        sender.isSelected = !sender.isSelected
+        
+        if sender.isSelected {
+            print("hello")
+        } else {
+            print("bye")
+        }
     }
     
     @objc func MoveToSecondModal(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         if sender.isSelected {
             print("hello")
-            map.delegate = nil
+            //map.delegate = nil
             map.addGestureRecognizer(self.tapForMarker)
         } else {
             print("bye")
-            map.delegate = self
+            //map.delegate = self
             map.removeGestureRecognizer(self.tapForMarker)
             }
         }
@@ -135,7 +138,7 @@ class MapContentViewContoller: UIViewController {
         present(addMarkerModal, animated: true, completion: nil)
     }
     // MARK: - Custom Func
-    private func addCustiomPin(coord: CLLocationCoordinate2D) -> MKPointAnnotation {
+    private func addCustiomPin(coord: CLLocationCoordinate2D) -> MKAnnotation {
         let pin = MKPointAnnotation()
         pin.coordinate = coord
         pin.title = "위험 마커"
@@ -151,7 +154,22 @@ extension MapContentViewContoller: MKMapViewDelegate, AddMarkerModalDelegate {
         existingMarkerModal.modalPresentationStyle = .overFullScreen
         present(existingMarkerModal, animated: true, completion: nil)
     }
-    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        print("Hello")
+        var annotationView = self.map.dequeueReusableAnnotationView(withIdentifier: "Marker")
+                
+        if annotationView == nil {
+                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "Marker")
+                annotationView!.canShowCallout = true
+                }
+                else {
+                annotationView!.annotation = annotation
+                }
+                
+        let pinImage = UIImage(named: "Marker")
+        annotationView!.image = pinImage
+        return annotationView
+    }
     func canMakeAnnotation(location:CLLocationCoordinate2D?) {
         // 마커 생성, 그 마커는 클릭이 가능해야 함!
         let marker = addCustiomPin(coord: location!)
