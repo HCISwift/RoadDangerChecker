@@ -7,60 +7,7 @@
 
 import UIKit
 
-// MARK: - MyCourseCollectionView
-struct Data {
-    let memberName = ["효정", "미미", "유아", "승희", "지호"
-    ]
-}
-
-class MyCourseCollectionView: UICollectionView {
-    // none
-}
-
-class SharedCollectionView: UICollectionView {
-    // none
-}
-
-class CollectionViewCell: UICollectionViewCell {
-    
-    var memberNameLabel: UILabel!
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setUpCell()
-        setUpLabel()
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
-        setUpCell()
-        setUpLabel()
-    }
-    
-    func setUpCell() {
-        memberNameLabel = UILabel()
-        contentView.addSubview(memberNameLabel)
-        memberNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        memberNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
-        memberNameLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
-        memberNameLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
-        memberNameLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
-    }
-    
-    func setUpLabel() {
-        memberNameLabel.font = UIFont.systemFont(ofSize: 12)
-        memberNameLabel.textAlignment = .center
-    }
-}
-
-// MARK: - CollectionView
-
-class FirstModal: UITabBarController {
-    
-    private var customCollectionView: MyCourseCollectionView!
-    private var sharedCollectionView: SharedCollectionView!
-    private let data = Data()
-    private var changeButton = -1
+class FirstModal: UIViewController {
     
     lazy var topBarView: UIView = {
         let topBarView = UIView()
@@ -80,36 +27,18 @@ class FirstModal: UITabBarController {
         
         return courseButton
     }()
-    
+
     @objc private func didCourseButtonClicked(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
+        
+        MySharedButton.backgroundColor = UIColor.systemGray2
+        sender.backgroundColor = .white
         
         if sender.isSelected {
             setCollectionView(sender)
         }
     }
-    
-    func setCollectionView(_ sender: UIButton) {
-        print(sender.titleLabel?.text!)
-        if (sender.titleLabel?.text! == "My Course") {
-            if (changeButton != 0) {
-                changeButton = 0
-                NSLayoutConstraint.activate([
-                    customCollectionView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
-                    customCollectionView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10),
-                    customCollectionView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10),
-                    customCollectionView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10),
-                ])
-            }
-        }
-        else {
-            if (changeButton != 1) {
-                changeButton = 1
-                customCollectionView.removeFromSuperview()
-            }
-        }
-    }
-    
+
     lazy var MySharedButton: UIButton = {
         let sharedButton = UIButton()
         sharedButton.setTitle("Shared", for: .normal)
@@ -126,8 +55,60 @@ class FirstModal: UITabBarController {
     @objc private func didSharedButtonClicked(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         
+        MyCourseButton.backgroundColor = UIColor.systemGray2
+        sender.backgroundColor = .white
+        
         if sender.isSelected {
             setCollectionView(sender)
+        }
+    }
+    
+    func setCollectionView(_ sender: UIButton) {
+        
+        if (sender.titleLabel?.text! == "My Course") {
+            sharedView.isHidden = true
+            myCourseView.isHidden = false
+            containerView.addSubview(myCourseView)
+            myCourseView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                myCourseView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
+                myCourseView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10),
+                myCourseView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10),
+            ])
+        }
+        else if (sender.titleLabel?.text! == "Shared") {
+            sharedView.isHidden = false
+            myCourseView.isHidden = true
+            containerView.addSubview(sharedView)
+            sharedView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                sharedView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
+                sharedView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10),
+                sharedView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10),
+            ])
+        }
+    }
+    
+    lazy var myCourseView: UIImageView = {
+        let myCourseView = UIImageView(image: UIImage(named: "MyCourse"))
+        
+        return myCourseView
+    }()
+    
+    lazy var sharedView: UIButton = {
+        let sharedView = UIButton()
+        sharedView.setImage(UIImage(named: "Shared"), for: .normal)
+        
+        sharedView.addTarget(self, action: #selector(didsharedViewClicked(_:)), for: .touchUpInside)
+        
+        return sharedView
+    }()
+    
+    @objc private func didsharedViewClicked(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        
+        if sender.isSelected {
+            
         }
     }
     
@@ -141,7 +122,7 @@ class FirstModal: UITabBarController {
     
     lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .gray
         view.layer.cornerRadius = 16
         view.clipsToBounds = true
         return view
@@ -175,20 +156,12 @@ class FirstModal: UITabBarController {
         dimmedView.addGestureRecognizer(tapGesture)
         
         setupPanGesture()
-        
-        registerCollectionView()
-        collectionViewDelegate()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         animateShowDimmedView()
         animatePresentContainer()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
     }
     
     // UITabBarControllerDelegate method
@@ -211,11 +184,6 @@ class FirstModal: UITabBarController {
         topBarView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        customCollectionView = MyCourseCollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
-        containerView.addSubview(customCollectionView)
-        customCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        customCollectionView.backgroundColor = .clear
         
         // Set static constraints
         NSLayoutConstraint.activate([
@@ -250,15 +218,6 @@ class FirstModal: UITabBarController {
         // Activate constraints
         containerViewHeightConstraint?.isActive = true
         containerViewBottomConstraint?.isActive = true
-    }
-    
-    func registerCollectionView() {
-        customCollectionView.register(CollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "cellIdentifier")
-    }
-    
-    func collectionViewDelegate() {
-        customCollectionView.delegate = self
-        customCollectionView.dataSource = self
     }
     
     func setupPanGesture() {
@@ -365,23 +324,5 @@ class FirstModal: UITabBarController {
             // call this to trigger refresh constraint
             self.view.layoutIfNeeded()
         }
-    }
-}
-
-extension FirstModal: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = view.frame.width / 3 - 1
-        return CGSize(width: width, height: width)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.memberName.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = customCollectionView.dequeueReusableCell(withReuseIdentifier: "cellIdentifier", for: indexPath) as! CollectionViewCell
-        cell.memberNameLabel.text = data.memberName[indexPath.row]
-        return cell
     }
 }
