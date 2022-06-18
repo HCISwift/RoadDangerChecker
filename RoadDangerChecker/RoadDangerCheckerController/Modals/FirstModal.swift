@@ -9,6 +9,8 @@ import UIKit
 
 class FirstModal: UIViewController {
     
+    let sharedViewController = SharedViewController()
+    
     lazy var topBarView: UIView = {
         let topBarView = UIView()
         topBarView.backgroundColor = .systemGray2
@@ -27,18 +29,23 @@ class FirstModal: UIViewController {
         
         return courseButton
     }()
-
+    
     @objc private func didCourseButtonClicked(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        
         MySharedButton.backgroundColor = UIColor.systemGray2
         sender.backgroundColor = .white
         
-        if sender.isSelected {
-            setCollectionView(sender)
-        }
+        
+        containerView.addSubview(myCourseView)
+        myCourseView.translatesAutoresizingMaskIntoConstraints = false
+        sharedView.isHidden = true
+        myCourseView.isHidden = false
+        NSLayoutConstraint.activate([
+            myCourseView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
+            myCourseView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10),
+            myCourseView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10),
+        ])
     }
-
+    
     lazy var MySharedButton: UIButton = {
         let sharedButton = UIButton()
         sharedButton.setTitle("Shared", for: .normal)
@@ -53,40 +60,19 @@ class FirstModal: UIViewController {
     }()
     
     @objc private func didSharedButtonClicked(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        
         MyCourseButton.backgroundColor = UIColor.systemGray2
         sender.backgroundColor = .white
         
-        if sender.isSelected {
-            setCollectionView(sender)
-        }
-    }
-    
-    func setCollectionView(_ sender: UIButton) {
         
-        if (sender.titleLabel?.text! == "My Course") {
-            sharedView.isHidden = true
-            myCourseView.isHidden = false
-            containerView.addSubview(myCourseView)
-            myCourseView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                myCourseView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
-                myCourseView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10),
-                myCourseView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10),
-            ])
-        }
-        else if (sender.titleLabel?.text! == "Shared") {
-            sharedView.isHidden = false
-            myCourseView.isHidden = true
-            containerView.addSubview(sharedView)
-            sharedView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                sharedView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
-                sharedView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10),
-                sharedView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10),
-            ])
-        }
+        containerView.addSubview(sharedView)
+        sharedView.translatesAutoresizingMaskIntoConstraints = false
+        sharedView.isHidden = false
+        myCourseView.isHidden = true
+        NSLayoutConstraint.activate([
+            sharedView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
+            sharedView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10),
+            sharedView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10),
+        ])
     }
     
     lazy var myCourseView: UIImageView = {
@@ -108,7 +94,7 @@ class FirstModal: UIViewController {
         sender.isSelected = !sender.isSelected
         
         if sender.isSelected {
-            
+            present(sharedViewController, animated: true)
         }
     }
     
