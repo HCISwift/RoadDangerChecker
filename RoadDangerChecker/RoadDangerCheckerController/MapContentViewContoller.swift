@@ -104,13 +104,8 @@ class MapContentViewContoller: UIViewController {
     }
     // MARK: - Action
     @objc func MoveToFirstModal(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        
-        if sender.isSelected {
-            print("hello")
-        } else {
-            print("bye")
-        }
+        let firstModal = FirstModal()
+        present(firstModal, animated: false)
     }
     
     @objc func MoveToSecondModal(_ sender: UIButton) {

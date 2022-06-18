@@ -7,28 +7,18 @@
 
 import UIKit
 
+// MARK: - MyCourseCollectionView
 struct Data {
-    let memberName = ["효정", "미미", "유아", "승희", "지호", "비니", "아린", "효정", "미미", "유아", "승희", "지호", "비니", "아린", "효정", "미미", "유아", "승희", "지호", "비니", "아린", "효정", "미미", "유아", "승희", "지호", "비니", "아린", "효정", "미미", "유아", "승희", "지호", "비니", "아린", "효정", "미미", "유아", "승희", "지호", "비니", "아린"]
+    let memberName = ["효정", "미미", "유아", "승희", "지호"
+    ]
 }
 
-class CustomCollectionView: UICollectionView {
-    
+class MyCourseCollectionView: UICollectionView {
     // none
-    
 }
 
-class TabOneViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        self.view.backgroundColor = UIColor.blue
-        self.title = "Tab 1"
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
- 
+class SharedCollectionView: UICollectionView {
+    // none
 }
 
 class CollectionViewCell: UICollectionViewCell {
@@ -61,13 +51,16 @@ class CollectionViewCell: UICollectionViewCell {
         memberNameLabel.font = UIFont.systemFont(ofSize: 12)
         memberNameLabel.textAlignment = .center
     }
-    
 }
+
+// MARK: - CollectionView
 
 class FirstModal: UITabBarController {
     
-    private var customCollectionView: CustomCollectionView!
+    private var customCollectionView: MyCourseCollectionView!
+    private var sharedCollectionView: SharedCollectionView!
     private let data = Data()
+    private var changeButton = -1
     
     lazy var topBarView: UIView = {
         let topBarView = UIView()
@@ -89,7 +82,32 @@ class FirstModal: UITabBarController {
     }()
     
     @objc private func didCourseButtonClicked(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
         
+        if sender.isSelected {
+            setCollectionView(sender)
+        }
+    }
+    
+    func setCollectionView(_ sender: UIButton) {
+        print(sender.titleLabel?.text!)
+        if (sender.titleLabel?.text! == "My Course") {
+            if (changeButton != 0) {
+                changeButton = 0
+                NSLayoutConstraint.activate([
+                    customCollectionView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
+                    customCollectionView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10),
+                    customCollectionView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10),
+                    customCollectionView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10),
+                ])
+            }
+        }
+        else {
+            if (changeButton != 1) {
+                changeButton = 1
+                customCollectionView.removeFromSuperview()
+            }
+        }
     }
     
     lazy var MySharedButton: UIButton = {
@@ -100,8 +118,18 @@ class FirstModal: UITabBarController {
         sharedButton.layer.cornerRadius = 16
         sharedButton.clipsToBounds = true
         
+        sharedButton.addTarget(self, action: #selector(didSharedButtonClicked(_:)), for: .touchUpInside)
+        
         return sharedButton
     }()
+    
+    @objc private func didSharedButtonClicked(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        
+        if sender.isSelected {
+            setCollectionView(sender)
+        }
+    }
     
     lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [MyCourseButton, MySharedButton])
@@ -148,8 +176,8 @@ class FirstModal: UITabBarController {
         
         setupPanGesture()
         
-        //registerCollectionView()
-        //collectionViewDelegate()
+        registerCollectionView()
+        collectionViewDelegate()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -160,6 +188,7 @@ class FirstModal: UITabBarController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
     }
     
     // UITabBarControllerDelegate method
@@ -182,10 +211,11 @@ class FirstModal: UITabBarController {
         topBarView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
-//        customCollectionView = CustomCollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
-//        containerView.addSubview(customCollectionView)
-//        customCollectionView.translatesAutoresizingMaskIntoConstraints = false
-//        customCollectionView.backgroundColor = .clear
+        
+        customCollectionView = MyCourseCollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
+        containerView.addSubview(customCollectionView)
+        customCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        customCollectionView.backgroundColor = .clear
         
         // Set static constraints
         NSLayoutConstraint.activate([
@@ -206,11 +236,6 @@ class FirstModal: UITabBarController {
             stackView.topAnchor.constraint(equalTo: topBarView.bottomAnchor, constant: 10),
             stackView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10),
             stackView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10),
-//
-//            customCollectionView.topAnchor.constraint(equalTo: stackView.topAnchor, constant: 10),
-//            customCollectionView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10),
-//            customCollectionView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10),
-//            customCollectionView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10),
         ])
         
         // Set dynamic constraints
@@ -359,5 +384,4 @@ extension FirstModal: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         cell.memberNameLabel.text = data.memberName[indexPath.row]
         return cell
     }
-    
 }
