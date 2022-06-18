@@ -6,6 +6,9 @@ class MapContentViewContoller: UIViewController {
     let map = MKMapView()
     let chungNamCoordinate = CLLocationCoordinate2D(latitude: 36.36220885252049, longitude: 127.34467506408693)
     var tapForMarker = UITapGestureRecognizer()
+    var tapForRoute = UITapGestureRecognizer()
+    var routeStartAndDestination: [CLLocationCoordinate2D] = []
+    var directionArray: [MKRoute] = []
     var isMakeAnnotation = false
     
     // MARK: - SubViews
@@ -60,6 +63,19 @@ class MapContentViewContoller: UIViewController {
         return stackView
     } ()
     
+    private let makeRouteButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let playImage = UIImage(systemName: "play.fill", withConfiguration: UIImage.SymbolConfiguration(
+            pointSize: 25))
+        button.setImage(playImage, for: .normal)
+        let pauseImage = UIImage(systemName: "pause.fill", withConfiguration: UIImage.SymbolConfiguration(
+            pointSize: 25))
+        button.addTarget(self, action: #selector(IsMakeRoute(_:)), for: .touchUpInside)
+        button.setImage(pauseImage, for: .selected)
+        
+        return button
+    }()
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +92,6 @@ class MapContentViewContoller: UIViewController {
             buttonStackView.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor),
             buttonStackView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -5),
         ])
-        
     }
     
     // MARK: - Setup
@@ -89,8 +104,13 @@ class MapContentViewContoller: UIViewController {
     }
     private func SetupMap() {
         view.addSubview(map)
+        view.addSubview(makeRouteButton)
         map.translatesAutoresizingMaskIntoConstraints = false // 빼 먹지 말자!
+        
         NSLayoutConstraint.activate([
+            makeRouteButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 35),
+            makeRouteButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -35),
+            
             map.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -80),
             map.topAnchor.constraint(equalTo: view.topAnchor),
             map.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -100,6 +120,7 @@ class MapContentViewContoller: UIViewController {
         map.setRegion(MKCoordinateRegion(center: chungNamCoordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
         //let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedMapView(_:)))
         self.tapForMarker = UITapGestureRecognizer(target: self, action: #selector(self.didTappedMapView(_:)))
+        self.tapForRoute = UITapGestureRecognizer(target: self, action: #selector(self.didTappedForRoute(_:)))
         //map.addGestureRecognizer(tap)
     }
     // MARK: - Action
