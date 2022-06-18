@@ -17,7 +17,7 @@
 		3543D7B828449A1D007E4FA0 /* FirstModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543D7B628449A1D007E4FA0 /* FirstModal.swift */; };
 		35E1FDCA285A3D2C00FEC87B /* ExistingMarkerModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1FDC9285A3D2C00FEC87B /* ExistingMarkerModal.swift */; };
 		35E30BED284DC412003F2260 /* AddMarkerModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E30BEC284DC412003F2260 /* AddMarkerModal.swift */; };
-		CD3FAED1285C988F00D931F8 /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3FAED0285C988F00D931F8 /* CourseModel.swift */; };
+		CD3FAED1285C988F00D931F8 /* CourseModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3FAED0285C988F00D931F8 /* CourseModal.swift */; };
 		CD68C0B8285D8AE900AE4FE5 /* SharedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD68C0B7285D8AE900AE4FE5 /* SharedViewController.swift */; };
 		CD9A780D2840E4D400AD3DC2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9A780C2840E4D400AD3DC2 /* LoginViewController.swift */; };
 		CD9AE3D42844C665004E9E84 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9AE3D32844C665004E9E84 /* LoginModel.swift */; };
@@ -37,7 +37,7 @@
 		3543D7B628449A1D007E4FA0 /* FirstModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstModal.swift; sourceTree = "<group>"; };
 		35E1FDC9285A3D2C00FEC87B /* ExistingMarkerModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingMarkerModal.swift; sourceTree = "<group>"; };
 		35E30BEC284DC412003F2260 /* AddMarkerModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMarkerModal.swift; sourceTree = "<group>"; };
-		CD3FAED0285C988F00D931F8 /* CourseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseModel.swift; sourceTree = "<group>"; };
+		CD3FAED0285C988F00D931F8 /* CourseModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseModal.swift; sourceTree = "<group>"; };
 		CD68C0B7285D8AE900AE4FE5 /* SharedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedViewController.swift; sourceTree = "<group>"; };
 		CD9A780C2840E4D400AD3DC2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CD9AE3D32844C665004E9E84 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
@@ -116,6 +116,7 @@
 		3543D7B428449A12007E4FA0 /* Modals */ = {
 			isa = PBXGroup;
 			children = (
+				CD3FAED0285C988F00D931F8 /* CourseModal.swift */,
 				3543D7B628449A1D007E4FA0 /* FirstModal.swift */,
 				3543D7B528449A1D007E4FA0 /* SecondModal.swift */,
 				35E30BEC284DC412003F2260 /* AddMarkerModal.swift */,
@@ -129,7 +130,6 @@
 			children = (
 				CD9AE3D32844C665004E9E84 /* LoginModel.swift */,
 				CD9AE3D52844C6DF004E9E84 /* UserModel.swift */,
-				CD3FAED0285C988F00D931F8 /* CourseModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -211,7 +211,7 @@
 				CD9A780D2840E4D400AD3DC2 /* LoginViewController.swift in Sources */,
 				3543D7B1284499B6007E4FA0 /* MapContentViewContoller.swift in Sources */,
 				3543D7B828449A1D007E4FA0 /* FirstModal.swift in Sources */,
-				CD3FAED1285C988F00D931F8 /* CourseModel.swift in Sources */,
+				CD3FAED1285C988F00D931F8 /* CourseModal.swift in Sources */,
 				CD9AE3D62844C6DF004E9E84 /* UserModel.swift in Sources */,
 				3531A8812840E3C7002E40BE /* AppDelegate.swift in Sources */,
 				35E30BED284DC412003F2260 /* AddMarkerModal.swift in Sources */,
