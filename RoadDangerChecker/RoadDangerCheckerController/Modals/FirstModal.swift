@@ -16,11 +16,6 @@ struct Data {
 class MyCourseCollectionView: UICollectionView {
     // none
 }
-
-class SharedCollectionView: UICollectionView {
-    // none
-}
-
 class CollectionViewCell: UICollectionViewCell {
     
     var memberNameLabel: UILabel!
@@ -58,7 +53,6 @@ class CollectionViewCell: UICollectionViewCell {
 class FirstModal: UITabBarController {
     
     private var customCollectionView: MyCourseCollectionView!
-    private var sharedCollectionView: SharedCollectionView!
     private let data = Data()
     private var changeButton = -1
     
@@ -90,7 +84,7 @@ class FirstModal: UITabBarController {
     }
     
     func setCollectionView(_ sender: UIButton) {
-        print(sender.titleLabel?.text!)
+//        print(sender.titleLabel?.text!)
         if (sender.titleLabel?.text! == "My Course") {
             if (changeButton != 0) {
                 changeButton = 0
@@ -105,7 +99,12 @@ class FirstModal: UITabBarController {
         else {
             if (changeButton != 1) {
                 changeButton = 1
-                customCollectionView.removeFromSuperview()
+                NSLayoutConstraint.deactivate([
+                    customCollectionView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
+                    customCollectionView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10),
+                    customCollectionView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10),
+                    customCollectionView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10),
+                ])
             }
         }
     }
@@ -214,7 +213,6 @@ class FirstModal: UITabBarController {
         
         customCollectionView = MyCourseCollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
         containerView.addSubview(customCollectionView)
-        customCollectionView.translatesAutoresizingMaskIntoConstraints = false
         customCollectionView.backgroundColor = .clear
         
         // Set static constraints
