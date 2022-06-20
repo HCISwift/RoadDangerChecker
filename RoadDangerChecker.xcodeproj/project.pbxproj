@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		352428C9285DAC34001F1F59 /* CourseTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352428C8285DAC34001F1F59 /* CourseTab.swift */; };
 		3531A8812840E3C7002E40BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531A8802840E3C7002E40BE /* AppDelegate.swift */; };
 		3531A8832840E3C7002E40BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531A8822840E3C7002E40BE /* SceneDelegate.swift */; };
 		3531A88A2840E3C8002E40BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3531A8892840E3C8002E40BE /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 		3543D7B1284499B6007E4FA0 /* MapContentViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543D7B0284499B6007E4FA0 /* MapContentViewContoller.swift */; };
 		3543D7B728449A1D007E4FA0 /* SecondModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543D7B528449A1D007E4FA0 /* SecondModal.swift */; };
 		3543D7B828449A1D007E4FA0 /* FirstModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543D7B628449A1D007E4FA0 /* FirstModal.swift */; };
+		356CD13D285DB6FF007A0D4F /* MadeCourseModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356CD13C285DB6FF007A0D4F /* MadeCourseModal.swift */; };
 		35E1FDCA285A3D2C00FEC87B /* ExistingMarkerModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1FDC9285A3D2C00FEC87B /* ExistingMarkerModal.swift */; };
 		35E30BED284DC412003F2260 /* AddMarkerModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E30BEC284DC412003F2260 /* AddMarkerModal.swift */; };
 		CD3FAED1285C988F00D931F8 /* CourseModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3FAED0285C988F00D931F8 /* CourseModal.swift */; };
@@ -25,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		352428C8285DAC34001F1F59 /* CourseTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTab.swift; sourceTree = "<group>"; };
 		3531A87D2840E3C7002E40BE /* RoadDangerChecker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadDangerChecker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3531A8802840E3C7002E40BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3531A8822840E3C7002E40BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,6 +38,7 @@
 		3543D7B0284499B6007E4FA0 /* MapContentViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapContentViewContoller.swift; sourceTree = "<group>"; };
 		3543D7B528449A1D007E4FA0 /* SecondModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondModal.swift; sourceTree = "<group>"; };
 		3543D7B628449A1D007E4FA0 /* FirstModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstModal.swift; sourceTree = "<group>"; };
+		356CD13C285DB6FF007A0D4F /* MadeCourseModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MadeCourseModal.swift; sourceTree = "<group>"; };
 		35E1FDC9285A3D2C00FEC87B /* ExistingMarkerModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingMarkerModal.swift; sourceTree = "<group>"; };
 		35E30BEC284DC412003F2260 /* AddMarkerModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMarkerModal.swift; sourceTree = "<group>"; };
 		CD3FAED0285C988F00D931F8 /* CourseModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseModal.swift; sourceTree = "<group>"; };
@@ -121,6 +125,8 @@
 				3543D7B528449A1D007E4FA0 /* SecondModal.swift */,
 				35E30BEC284DC412003F2260 /* AddMarkerModal.swift */,
 				35E1FDC9285A3D2C00FEC87B /* ExistingMarkerModal.swift */,
+				352428C8285DAC34001F1F59 /* CourseTab.swift */,
+				356CD13C285DB6FF007A0D4F /* MadeCourseModal.swift */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -210,10 +216,12 @@
 				35E1FDCA285A3D2C00FEC87B /* ExistingMarkerModal.swift in Sources */,
 				CD9A780D2840E4D400AD3DC2 /* LoginViewController.swift in Sources */,
 				3543D7B1284499B6007E4FA0 /* MapContentViewContoller.swift in Sources */,
+				356CD13D285DB6FF007A0D4F /* MadeCourseModal.swift in Sources */,
 				3543D7B828449A1D007E4FA0 /* FirstModal.swift in Sources */,
 				CD3FAED1285C988F00D931F8 /* CourseModal.swift in Sources */,
 				CD9AE3D62844C6DF004E9E84 /* UserModel.swift in Sources */,
 				3531A8812840E3C7002E40BE /* AppDelegate.swift in Sources */,
+				352428C9285DAC34001F1F59 /* CourseTab.swift in Sources */,
 				35E30BED284DC412003F2260 /* AddMarkerModal.swift in Sources */,
 				3531A8832840E3C7002E40BE /* SceneDelegate.swift in Sources */,
 				CD9AE3D42844C665004E9E84 /* LoginModel.swift in Sources */,
