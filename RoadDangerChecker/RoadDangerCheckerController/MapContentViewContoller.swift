@@ -180,6 +180,10 @@ class MapContentViewContoller: UIViewController {
             let startPosition = routeStartAndDestination[0]
             let destinationPosition = routeStartAndDestination[1]
             createPath(start: startPosition, destination: destinationPosition)
+            
+            let madeCourseModal = MadeCourseModal()
+            madeCourseModal.modalPresentationStyle = .overFullScreen
+            present(madeCourseModal, animated: true, completion: nil)
             self.routeStartAndDestination = []
         }
     }
