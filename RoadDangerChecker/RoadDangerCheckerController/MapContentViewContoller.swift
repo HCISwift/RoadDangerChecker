@@ -126,7 +126,7 @@ class MapContentViewContoller: UIViewController {
     // MARK: - Action
     @objc func MoveToFirstModal(_ sender: UIButton) {
         let firstModal = FirstModal()
-        present(firstModal, animated: false)
+        present(firstModal, animated: true)
     }
     
     @objc func MoveToSecondModal(_ sender: UIButton) {
