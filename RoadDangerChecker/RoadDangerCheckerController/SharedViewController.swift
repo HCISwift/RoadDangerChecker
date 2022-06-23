@@ -9,8 +9,6 @@ import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
     
-    let madeCourseModal = MadeCourseModal()
-    
     let itemBox: UIView = {
         let itemBox = UIView()
         itemBox.backgroundColor = .gray
@@ -58,19 +56,9 @@ class CollectionViewCell: UICollectionViewCell {
         courseDetailButton.setTitle("자세히", for: .normal)
         courseDetailButton.setTitleColor(UIColor.white, for: .normal)
         courseDetailButton.backgroundColor = .systemGray2
-
-        courseDetailButton.addTarget(CollectionViewCell.self, action: #selector(didDetailButtonTap(_:)), for: .touchUpInside)
         
         return courseDetailButton
     }()
-    
-    @objc private func didDetailButtonTap(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        
-        if sender.isSelected {
-            present(madeCourseModal, animated: true)
-        }
-    }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -231,7 +219,18 @@ extension SharedViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let cell = customCollectionView.dequeueReusableCell(withReuseIdentifier: "cellIdentifier", for: indexPath) as! CollectionViewCell
         cell.imageView.image = map[indexPath.row]
         cell.nameLabel.text = nameLabel[indexPath.row]
+        cell.courseDetailButton.addTarget(self, action: #selector(didDetailButtonTap(_:)), for: .touchUpInside)
+        
+        
         return cell
     }
     
+    @objc private func didDetailButtonTap(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        
+        if sender.isSelected {
+            present(MadeCourseModal(), animated: true)
+        }
+    }
+
 }
